@@ -7,6 +7,7 @@ import {
   updateAmountRequest,
 } from './actions';
 import { formatPrice } from '../../../util/format';
+import NavigationService from '../../../services/NavigationService';
 
 function* addTocart({ id }) {
   const productExist = yield select(state => state.cart.find(p => p.id === id));
@@ -23,6 +24,8 @@ function* addTocart({ id }) {
     };
 
     yield put(addToCartSuccess(data));
+
+    NavigationService.navigate('Cart');
   }
 }
 
